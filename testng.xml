@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test Suite 01" verbose="1">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    </listeners>
+    <test name="Smoke Test with Chrome browser">
+        <parameter name="browserName" value="chrome"></parameter>
+        <classes>
+            <class name="ui.TestAppointment"></class>
+        </classes>
+    </test>
+    <test name="Smoke Test with Firefox browser">
+        <parameter name="browserName" value="firefox"></parameter>
+        <classes>
+            <class name="ui.TestAppointment"></class>
+        </classes>
+    </test>
+    <test name="Smoke Test with Safari browser">
+        <parameter name="browserName" value="safari"></parameter>
+        <classes>
+            <class name="ui.TestAppointment"></class>
+        </classes>
+    </test>
+    <test name="Smoke Test with opera browser">
+        <parameter name="browserName" value="opera"></parameter>
+        <classes>
+            <class name="ui.TestAppointment"></class>
+        </classes>
+    </test>
+</suite>
