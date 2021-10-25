@@ -2,43 +2,49 @@ package ui;
 
 import Objects.Account;
 import Objects.Appointment;
-import Pages.AppointmentConfirmationPage;
-import Pages.HomePage;
-import Pages.LoginPage;
-import Pages.MakeAppointmentPage;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import Pages.*;
+import Utils.Constants;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
 
 public class TestAppointment {
     Account account;
     Appointment appointment;
+    WebDriver driver;
 
-
+    BasePage basePage;
     HomePage homePage;
     LoginPage loginPage;
     MakeAppointmentPage makeAppointmentPage;
     AppointmentConfirmationPage appointmentConfirmationPage;
 
     @BeforeClass
-    public void setUp() {
+    @Parameters({"browserName"})
+    public void setUp(@Optional("chrome") String browserName) {
         account = new Account();
+        account.setUsername("John Doe");
+        account.setPassword("ThisIsNotAPassword");
+
         appointment = new Appointment();
 
-        homePage = new HomePage();
+        basePage = new BasePage(driver);
+        driver = basePage.setupDriver(browserName);
+
+        homePage = new HomePage(driver);
+        homePage.navigate(Constants.AUT_URL);
         homePage.clickMakeAppointment();
 
-        loginPage = new LoginPage();
+        loginPage = new LoginPage(driver);
 
         loginPage.login(account);
 
-        makeAppointmentPage = new MakeAppointmentPage();
-        appointmentConfirmationPage = new AppointmentConfirmationPage();
+        makeAppointmentPage = new MakeAppointmentPage(driver);
+        appointmentConfirmationPage = new AppointmentConfirmationPage(driver);
     }
 
     @AfterClass
     public void tearDown() {
-
+        basePage.cleanUp();
     }
 
     @Test
