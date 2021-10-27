@@ -2,7 +2,7 @@ package Objects;
 
 public class Appointment {
     String facility;
-    String hospitalReadmission;
+    boolean hospitalReadmission;
     String healthcareProgram;
     String visitDate;
     String comment;
@@ -15,11 +15,11 @@ public class Appointment {
         this.facility = facility;
     }
 
-    public String getHospitalReadmission() {
+    public boolean isHospitalReadmission() {
         return hospitalReadmission;
     }
 
-    public void setHospitalReadmission(String hospitalReadmission) {
+    public void setHospitalReadmission(boolean hospitalReadmission) {
         this.hospitalReadmission = hospitalReadmission;
     }
 

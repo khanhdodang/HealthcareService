@@ -8,6 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Reporter;
 
 import java.util.List;
@@ -55,6 +56,7 @@ public class BasePage {
 
     /**
      * Check element displays or not
+     *
      * @param by
      * @return
      */
@@ -63,6 +65,22 @@ public class BasePage {
         try {
             WebElement element = driver.findElement(by);
             return element.isDisplayed();
+        } catch (Exception exception) {
+            return false;
+        }
+    }
+
+    /**
+     * Check element checked or not
+     *
+     * @param by
+     * @return
+     */
+    public boolean isSelected(By by) {
+        Reporter.log("Check if the element checked");
+        try {
+            WebElement element = driver.findElement(by);
+            return element.isSelected();
         } catch (Exception exception) {
             return false;
         }
@@ -106,7 +124,7 @@ public class BasePage {
     /**
      * Get element size
      *
-     * @param by   the element
+     * @param by the element
      */
     public int getElementsSize(By by) {
         int result = 0;
@@ -117,6 +135,40 @@ public class BasePage {
             System.out.println(e.getMessage());
         }
         return result;
+    }
+
+
+    /**
+     * Select dropdown by index
+     *
+     * @param by
+     * @param index start index = 1
+     */
+    public void selectDropdown(By by, int index) {
+        Select dropdown = new Select(driver.findElement(by));
+        dropdown.selectByIndex(index);
+    }
+
+    /**
+     * Select dropdown by value
+     *
+     * @param by
+     * @param value
+     */
+    public void selectDropdownByValue(By by, String value) {
+        Select dropdown = new Select(driver.findElement(by));
+        dropdown.selectByValue(value);
+    }
+
+    /**
+     * Select dropdown by visible text
+     *
+     * @param by
+     * @param VisibleText
+     */
+    public void selectDropdownByVisibleText(By by, String VisibleText) {
+        Select dropdown = new Select(driver.findElement(by));
+        dropdown.selectByVisibleText(VisibleText);
     }
 
     /**

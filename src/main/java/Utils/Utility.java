@@ -1,14 +1,18 @@
 package Utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Utility {
 
     /**
-     * get Datetime with format dd/mm/yyyy
+     * get Datetime with format dd/MM/yyyy
+     *
      * @return
      */
-    public String getDatetime() {
-        String result = "";
-
-        return result;
+    public static String getDatetime() {
+        SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
+        Date now = new Date();
+        return sdfDate.format(now);
     }
 }

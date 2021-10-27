@@ -6,12 +6,14 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
     LoginLocators locators = new LoginLocators();
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     /**
      * login function
+     *
      * @param account
      */
     public void login(Account account) {
